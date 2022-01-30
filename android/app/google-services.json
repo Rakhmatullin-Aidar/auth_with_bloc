@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "157578455434",
+    "project_id": "authwithbloc-a4038",
+    "storage_bucket": "authwithbloc-a4038.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157578455434:android:1d6857ba218b0e0a178073",
+        "android_client_info": {
+          "package_name": "com.example.authorization_with_bloc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157578455434-k0qcqv246or6gpo199s3dfpmapvntt0n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXJ-IQI41ots_jZoU8CXfLDysFaoDHGAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157578455434-k0qcqv246or6gpo199s3dfpmapvntt0n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "157578455434-d409008326fcvafm9dvt6hkvk5e7pfab.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "authorization"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
