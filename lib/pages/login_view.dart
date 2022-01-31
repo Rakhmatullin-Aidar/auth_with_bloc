@@ -47,21 +47,33 @@ class LoginView extends StatelessWidget {
           _passwordController.clear();
           Navigator.of(context).pushNamed('/homepage');
         }
+
         else if(state.formSubmissionStatus is RegistrationFailed){
           showModalBottomSheet(
             context: context,
             builder: (BuildContext context){
-              return userAlredyRegister;
+              return Container(
+                  padding: const EdgeInsets.all(20),
+                  alignment: Alignment.center,
+                  height: 200,
+                  child: Text('${state.message}', style: const TextStyle(fontSize: 20))
+              );
             }
-          );
+          ).whenComplete(() => context.read<LoginBloc>().add(CloseErrorWindow()));
         }
+
         else if(state.formSubmissionStatus is SubmissionFailed){
           showModalBottomSheet(
               context: context,
               builder: (BuildContext context){
-                return authError;
+                return Container(
+                    padding: const EdgeInsets.all(20),
+                    alignment: Alignment.center,
+                    height: 200,
+                    child: Text('${state.message}', style: const TextStyle(fontSize: 20))
+                );
               }
-          );
+          ).whenComplete(() => context.read<LoginBloc>().add(CloseErrorWindow()));
         }
       },
       child: SingleChildScrollView(
@@ -77,7 +89,7 @@ class LoginView extends StatelessWidget {
                 _passwordField(),
                 const SizedBox(height: 50),
                 _logInButton(),
-                _registerButton()
+                _registerButton(),
               ],
             ),
           ),
@@ -85,6 +97,8 @@ class LoginView extends StatelessWidget {
       ),
     );
   }
+
+
 
 
   Widget _emailField(){
@@ -122,7 +136,7 @@ class LoginView extends StatelessWidget {
               context.read<LoginBloc>().add(Entrance(email: state.email, password: state.password));
             }
           },
-      );
+        );
     });
   }
 

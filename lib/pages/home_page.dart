@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage>{
           return BlocListener<LoginBloc, LoginState>(
             listener: (context, state) {
               if (state.formSubmissionStatus is LogoutSuccess){
-                Navigator.of(context).pushNamed('/');
+                Navigator.of(context).pop();
               }
             },
             child: Center(

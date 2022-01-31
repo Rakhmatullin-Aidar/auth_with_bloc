@@ -6,29 +6,20 @@ class AuthService{
 
 
   Future<User?> signIn(String email, String password) async{
-    try{
-      UserCredential result = await _fAuth.signInWithEmailAndPassword(
-          email: email,
-          password: password
-      );
-      return result.user;
-    }catch(e){
-      return null;
-    }
+    UserCredential result = await _fAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password
+    );
+    return result.user;
   }
 
 
   Future<User?> register(String email, String password) async {
-     try{
-       UserCredential result = await _fAuth.createUserWithEmailAndPassword(
-         email: email,
-         password: password
-       );
-       User? user = result.user;
-       return user;
-     }catch(e){
-        return null;
-     }
+     UserCredential result = await _fAuth.createUserWithEmailAndPassword(
+       email: email,
+       password: password
+     );
+     return result.user;
   }
 
   Future<void> signOut() async{

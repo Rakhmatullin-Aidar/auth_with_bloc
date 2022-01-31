@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 String? validateEmail(String? formEmail){
   if(formEmail == null || formEmail.isEmpty) return "Enter data";
   String pattern = r'\w+@\w+\.\w+';
@@ -18,25 +16,6 @@ String? validatePassword(String? formPassword){
 }
 
 
-final userAlredyRegister = Container(
-    padding: const EdgeInsets.all(20),
-    alignment: Alignment.center,
-    height: 200,
-    child: const Text(
-      'Пользователь уже зарегестрирован',
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-    )
-);
 
 
-
-final authError = Container(
-    padding: const EdgeInsets.all(20),
-    alignment: Alignment.center,
-    height: 200,
-    child: const Text(
-      'Пользователь не зарегестрирован или введён неверный пароль',
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-    )
-);
 

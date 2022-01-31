@@ -1,5 +1,6 @@
 import 'package:authorization_with_bloc/auth/form_submission_status.dart';
 
+
 abstract class AuthEvent {}
 
 
@@ -29,6 +30,9 @@ class Entrance extends AuthEvent{
 class Logout extends AuthEvent{}
 
 
+class CloseErrorWindow extends AuthEvent{}
+
+
 
 class Registration extends AuthEvent{
   String? email;
@@ -36,6 +40,8 @@ class Registration extends AuthEvent{
 
   Registration({this.email,this.password});
 }
+
+
 
 
 

@@ -32,30 +32,36 @@ class LoginBloc extends Bloc<AuthEvent, LoginState>{
     }
 
     if(event is Entrance){
-      emit(state.copyWith(formSubmissionStatus: const FormSubmittingAuth()));
-      var user = await authService.signIn(state.email, state.password);
-      if(user == null){
-        emit(state.copyWith(formSubmissionStatus: const SubmissionFailed()));
-        emit(state.copyWith(formSubmissionStatus: const InitialFormStatus()));
-      }
-      else{
+      try{
+        emit(state.copyWith(formSubmissionStatus: const FormSubmittingAuth()));
+        await authService.signIn(state.email, state.password);
         emit(state.copyWith(formSubmissionStatus: const SubmissionSuccess()));
+        emit(state.copyWith(formSubmissionStatus: const InitialFormStatus()));
+      }on FirebaseAuthException catch(e){
+        emit(state.copyWith(message: e.message));
+        emit(state.copyWith(formSubmissionStatus: const SubmissionFailed()));
       }
     }
 
+
     else if(event is Registration){
       emit(state.copyWith(formSubmissionStatus: const FormSubmittingReg()));
-      var user = await authService.register(state.email, state.password);
-      if(user == null){
-        emit(state.copyWith(formSubmissionStatus: const RegistrationFailed()));
-        emit(state.copyWith(formSubmissionStatus: const InitialFormStatus()));
-      }
-      else{
+      try{
+        await authService.register(state.email, state.password);
         _myUser.email = state.email;
         _myUser.password = state.password;
         await FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid).set(_myUser.toJson());
         emit(state.copyWith(formSubmissionStatus: const SubmissionSuccess()));
+        emit(state.copyWith(formSubmissionStatus: const InitialFormStatus()));
+      }on FirebaseAuthException catch(e){
+        emit(state.copyWith(message: e.message));
+        emit(state.copyWith(formSubmissionStatus: const RegistrationFailed()));
       }
+    }
+
+
+    else if(event is CloseErrorWindow){
+      emit(state.copyWith(formSubmissionStatus: const InitialFormStatus()));
     }
 
 
